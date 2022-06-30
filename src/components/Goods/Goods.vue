@@ -4,20 +4,20 @@
         <div class="thumb">
             <div class="custom-control custom-checkbox">
                 <!-- 复选框 -->
-                <input type="checkbox" class="custom-control-input" id="cb1" :checked="true" />
-                <label class="custom-control-label" for="cb1">
+                <input type="checkbox" class="custom-control-input" :id="'goods' + id" :checked="state" @change="stateChange" />
+                <label class="custom-control-label" :for="'goods' + id">
                     <!-- 商品的缩略图 -->
-                    <img src="../../assets/logo.png" alt="" />
+                    <img :src="img" alt="" />
                 </label>
             </div>
         </div>
         <!-- 右侧信息区域 -->
         <div class="goods-info">
             <!-- 商品标题 -->
-            <h6 class="goods-title">商品名称商品名称商品名称商品名称</h6>
+            <h6 class="goods-title">{{ name }}</h6>
             <div class="goods-info-bottom">
                 <!-- 商品价格 -->
-                <span class="goods-price">￥0</span>
+                <span class="goods-price">￥{{ price }}</span>
                 <!-- 商品的数量 -->
             </div>
         </div>
@@ -70,5 +70,22 @@
 </style>
 
 <script>
-    export default {};
+    export default {
+        props: {
+            id: { type: Number, require: true },
+            img: { default: "", type: String },
+            name: { default: "", type: String },
+            price: { default: 0, type: Number },
+            state: { default: true, type: Boolean },
+        },
+        methods: {
+            // 监听复选框改变
+            stateChange(event) {
+                this.$emit("state-change", {
+                    id: this.id,
+                    state: event.target.checked,
+                });
+            },
+        },
+    };
 </script>
