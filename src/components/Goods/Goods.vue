@@ -29,9 +29,9 @@
         + .goods-container {
             border-top: 1px solid #efefef;
         }
-
-        padding: 10px;
+        
         display: flex;
+        padding: 10px;
 
         .thumb {
             display: flex;

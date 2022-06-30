@@ -1,6 +1,7 @@
 <template>
     <div class="app-container">
-        <h1>App 根组件</h1>
+        <!-- Header 头部区域 -->
+        <Header />
     </div>
 </template>
 
@@ -12,5 +13,11 @@
 </style>
 
 <script>
-    export default {};
+    import Header from "@/components/Header/Header.vue";
+
+    export default {
+        components: {
+            Header,
+        },
+    };
 </script>

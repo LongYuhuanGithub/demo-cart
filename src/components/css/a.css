@@ -1,0 +1,35 @@
+.goods-container {
+  display: flex;
+  padding: 10px;
+}
+.goods-container + .goods-container {
+  border-top: 1px solid #efefef;
+}
+.goods-container .thumb {
+  display: flex;
+  align-items: center;
+}
+.goods-container .thumb img {
+  width: 100px;
+  height: 100px;
+  margin: 0 10px;
+}
+.goods-container .goods-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+.goods-container .goods-info .goods-title {
+  font-weight: bold;
+  font-size: 12px;
+}
+.goods-container .goods-info .goods-info-bottom {
+  display: flex;
+  justify-content: space-between;
+}
+.goods-container .goods-info .goods-info-bottom .goods-price {
+  font-weight: bold;
+  color: red;
+  font-size: 13px;
+}

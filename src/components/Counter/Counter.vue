@@ -11,9 +11,9 @@
 
 <style lang="less" scoped>
     .number-box {
+        margin: 0 5px;
         min-width: 30px;
         text-align: center;
-        margin: 0 5px;
         font-size: 12px;
     }
 

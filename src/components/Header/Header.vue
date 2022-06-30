@@ -4,16 +4,16 @@
 
 <style lang="less" scoped>
     .header-container {
+        position: fixed;
+        top: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         font-size: 12px;
         height: 45px;
         width: 100%;
         background-color: #1d7bff;
-        display: flex;
-        justify-content: center;
-        align-items: center;
         color: #fff;
-        position: fixed;
-        top: 0;
         z-index: 999;
     }
 </style>

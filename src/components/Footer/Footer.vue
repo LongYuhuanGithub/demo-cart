@@ -21,17 +21,17 @@
 
 <style lang="less" scoped>
     .footer-container {
-        font-size: 12px;
-        height: 50px;
-        width: 100%;
-        border-top: 1px solid #efefef;
         position: fixed;
         bottom: 0;
-        background-color: #fff;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        border-top: 1px solid #efefef;
         padding: 0 10px;
+        font-size: 12px;
+        height: 50px;
+        width: 100%;
+        background-color: #fff;
     }
 
     .custom-checkbox {
@@ -44,9 +44,9 @@
     }
 
     .btn-settle {
+        border-radius: 25px;
         height: 80%;
         min-width: 110px;
-        border-radius: 25px;
         font-size: 12px;
     }
 
