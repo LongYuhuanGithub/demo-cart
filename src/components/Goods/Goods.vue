@@ -19,7 +19,7 @@
                 <!-- 商品价格 -->
                 <span class="goods-price">￥{{ price }}</span>
                 <!-- 商品的数量 -->
-                <Counter :id="id" :count="count" />
+                <slot />
             </div>
         </div>
     </div>
@@ -71,8 +71,6 @@
 </style>
 
 <script>
-    import Counter from "@/components/Counter/Counter.vue";
-
     export default {
         props: {
             id: { type: Number, require: true },
@@ -80,7 +78,6 @@
             name: { default: "", type: String },
             price: { default: 0, type: Number },
             state: { default: true, type: Boolean },
-            count: { default: 1, type: Number },
         },
         methods: {
             // 监听复选框改变
@@ -90,9 +87,6 @@
                     state: event.target.checked,
                 });
             },
-        },
-        components: {
-            Counter,
         },
     };
 </script>

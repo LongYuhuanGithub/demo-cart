@@ -23,19 +23,16 @@
 </style>
 
 <script>
-    import bus from "@/components/eventBus.js";
-
     export default {
         props: {
-            id: { type: Number, require: true },
             count: { default: 1, type: Number },
         },
         methods: {
             // 监听商品数量改变
             countChange(flag) {
                 if (flag) {
-                    bus.$emit("share", { id: this.id, count: this.count + 1 });
-                } else if (this.count > 1) bus.$emit("share", { id: this.id, count: this.count - 1 });
+                    this.$emit("count-change", this.count + 1);
+                } else if (this.count > 1) this.$emit("count-change", this.count - 1);
             },
         },
     };

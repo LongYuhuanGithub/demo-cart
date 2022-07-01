@@ -12,9 +12,10 @@
             :name="item.goods_name"
             :price="item.goods_price"
             :state="item.goods_state"
-            :count="item.goods_count"
             @state-change="stateChange"
-        />
+        >
+            <Counter :count="item.goods_count" @count-change="countChange(item, $event)" />
+        </Goods>
 
         <!-- Footer 底部区域 -->
         <Footer :fullState="fullState" :amount="amount" :total="total" @full-change="fullChange" />
@@ -30,25 +31,15 @@
 
 <script>
     import axios from "axios";
-    import bus from "@/components/eventBus.js";
     import Header from "@/components/Header/Header.vue";
     import Goods from "@/components/Goods/Goods.vue";
+    import Counter from "@/components/Counter/Counter.vue";
     import Footer from "@/components/Footer/Footer.vue";
 
     export default {
         created() {
             // 初始化购物车列表
             this.initCartList();
-
-            // 改变商品数量
-            bus.$on("share", obj => {
-                this.cartList.some(item => {
-                    if (item.id === obj.id) {
-                        item.goods_count = obj.count;
-                        return true;
-                    }
-                });
-            });
         },
         data() {
             return {
@@ -73,6 +64,10 @@
             fullChange(val) {
                 this.cartList.forEach(item => item.goods_state = val);
             },
+            // 改变商品数量
+            countChange(item, val) {
+                item.goods_count = val;
+            },
         },
         // 计算属性
         computed: {
@@ -92,6 +87,7 @@
         components: {
             Header,
             Goods,
+            Counter,
             Footer,
         },
     };
