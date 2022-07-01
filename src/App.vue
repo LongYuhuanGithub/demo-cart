@@ -12,11 +12,12 @@
             :name="item.goods_name"
             :price="item.goods_price"
             :state="item.goods_state"
+            :count="item.goods_count"
             @state-change="stateChange"
         />
 
         <!-- Footer 底部区域 -->
-        <Footer />
+        <Footer :fullState="fullState" :amount="amount" @full-change="fullChange" />
     </div>
 </template>
 
@@ -59,12 +60,20 @@
                     }
                 });
             },
+            // 监听 Footer 子组件的全选状态改变
+            fullChange(val) {
+                this.cartList.forEach(item => item.goods_state = val);
+            },
         },
         // 计算属性
         computed: {
             // 计算出是否全选
             fullState() {
                 return this.cartList.every(item => item.goods_state);
+            },
+            // 计算已勾选商品的总价
+            amount() {
+                return this.cartList.filter(item => item.goods_state).reduce((total, item) => total += item.goods_price * item.goods_count, 0);
             },
         },
         components: {

@@ -3,7 +3,7 @@
         <!-- 减 1 的按钮 -->
         <button type="button" class="btn btn-light btn-sm">-</button>
         <!-- 购买的数量 -->
-        <span class="number-box">1</span>
+        <span class="number-box">{{ count }}</span>
         <!-- 加 1 的按钮 -->
         <button type="button" class="btn btn-light btn-sm">+</button>
     </div>
@@ -23,5 +23,9 @@
 </style>
 
 <script>
-    export default {};
+    export default {
+        props: {
+            count: { default: 1, type: Number },
+        }
+    };
 </script>
