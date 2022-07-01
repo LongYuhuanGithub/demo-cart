@@ -14,7 +14,7 @@
 
         <!-- 结算按钮 -->
         <button type="button" class="btn btn-primary btn-settle">
-            结算（{{ 0 }}）
+            结算（{{ total }}）
         </button>
     </div>
 </template>
@@ -62,6 +62,7 @@
         props: {
             fullState: { type: Boolean },
             amount: { default: 0, type: Number },
+            total: { default: 0, type: Number },
         },
         methods: {
             // 监听全选状态变化

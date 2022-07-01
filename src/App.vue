@@ -17,7 +17,7 @@
         />
 
         <!-- Footer 底部区域 -->
-        <Footer :fullState="fullState" :amount="amount" @full-change="fullChange" />
+        <Footer :fullState="fullState" :amount="amount" :total="total" @full-change="fullChange" />
     </div>
 </template>
 
@@ -29,17 +29,26 @@
 </style>
 
 <script>
-    // 导入 axios 请求库
     import axios from "axios";
-
-    // 导入需要的组件
+    import bus from "@/components/eventBus.js";
     import Header from "@/components/Header/Header.vue";
     import Goods from "@/components/Goods/Goods.vue";
     import Footer from "@/components/Footer/Footer.vue";
 
     export default {
         created() {
+            // 初始化购物车列表
             this.initCartList();
+
+            // 改变商品数量
+            bus.$on("share", obj => {
+                this.cartList.some(item => {
+                    if (item.id === obj.id) {
+                        item.goods_count = obj.count;
+                        return true;
+                    }
+                });
+            });
         },
         data() {
             return {
@@ -74,6 +83,10 @@
             // 计算已勾选商品的总价
             amount() {
                 return this.cartList.filter(item => item.goods_state).reduce((total, item) => total += item.goods_price * item.goods_count, 0);
+            },
+            // 计算已勾选商品的数量
+            total() {
+                return this.cartList.filter(item => item.goods_state).reduce((total, item) => total += item.goods_count, 0);
             },
         },
         components: {
